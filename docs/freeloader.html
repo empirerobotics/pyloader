@@ -1,0 +1,180 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module freeloader</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>freeloader</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/empire%20robotics/documents/github/pyloader/freeloader.py">c:\users\empire robotics\documents\github\pyloader\freeloader.py</a></font></td></tr></table>
+    <p><tt>freeloader.py<br>
+&nbsp;<br>
+Originally&nbsp;by&nbsp;Anthony&nbsp;McNicoll&nbsp;&lt;am859@cornell.edu&gt;<br>
+Based&nbsp;on&nbsp;work&nbsp;by&nbsp;John&nbsp;Amend&nbsp;and&nbsp;Nadia&nbsp;Cheng<br>
+&nbsp;<br>
+Simple&nbsp;Python&nbsp;interface&nbsp;for&nbsp;working&nbsp;with&nbsp;a&nbsp;<a href="#Freeloader">Freeloader</a>&nbsp;machine.<br>
+It&nbsp;assumes&nbsp;you&nbsp;have&nbsp;a&nbsp;simple&nbsp;<a href="#Freeloader">Freeloader</a>&nbsp;consisting&nbsp;of&nbsp;the&nbsp;following:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;An&nbsp;MX-64&nbsp;Dynamixel,&nbsp;programmed&nbsp;with&nbsp;ID&nbsp;=&nbsp;1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;A&nbsp;Loadstar&nbsp;USB&nbsp;load&nbsp;cell&nbsp;interface<br>
+&nbsp;<br>
+The&nbsp;rest&nbsp;can&nbsp;be&nbsp;specified&nbsp;by&nbsp;the&nbsp;user.&nbsp;Usage&nbsp;is&nbsp;described&nbsp;below.<br>
+&nbsp;<br>
+This&nbsp;code&nbsp;is&nbsp;made&nbsp;available&nbsp;under&nbsp;a&nbsp;Creative&nbsp;Commons<br>
+Attribution-Noncommercial-Share-Alike&nbsp;3.0&nbsp;license.&nbsp;See<br>
+&lt;<a href="http://creativecommons.org/licenses/by-nc-sa/3.0">http://creativecommons.org/licenses/by-nc-sa/3.0</a>&gt;&nbsp;for&nbsp;details.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="dynamixel.html">dynamixel</a><br>
+</td><td width="25%" valign=top><a href="serial.tools.list_ports.html">serial.tools.list_ports</a><br>
+</td><td width="25%" valign=top><a href="serial.html">serial</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="freeloader.html#FreeloaderError">FreeloaderError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="freeloader.html#Freeloader">Freeloader</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Freeloader">class <strong>Freeloader</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;represents&nbsp;a&nbsp;classic&nbsp;<a href="#Freeloader">Freeloader</a>&nbsp;machine&nbsp;with&nbsp;motor&nbsp;and&nbsp;load<br>
+cell,&nbsp;and&nbsp;provides&nbsp;useful&nbsp;methods&nbsp;for&nbsp;interfacing&nbsp;with&nbsp;it.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Freeloader-__init__"><strong>__init__</strong></a>(self, pitch<font color="#909090">=10</font>, gear_ratio<font color="#909090">=2</font>)</dt><dd><tt>The&nbsp;user&nbsp;can&nbsp;optionally&nbsp;specify&nbsp;"pitch"&nbsp;or&nbsp;"gear_ratio"&nbsp;as&nbsp;options<br>
+during&nbsp;instantiation&nbsp;if&nbsp;they&nbsp;have&nbsp;built&nbsp;a&nbsp;non-typical&nbsp;<a href="#Freeloader">Freeloader</a>.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-autoconnect"><strong>autoconnect</strong></a>(self, verbose<font color="#909090">=False</font>, loadbaud<font color="#909090">=9600</font>, loadsps<font color="#909090">=120</font>, dynabaud<font color="#909090">=1000000</font>)</dt><dd><tt>A&nbsp;convenient&nbsp;method&nbsp;which&nbsp;automatically&nbsp;finds&nbsp;the&nbsp;Dynamixel&nbsp;and&nbsp;load&nbsp;cell&nbsp;<br>
+on&nbsp;whatever&nbsp;port&nbsp;they&nbsp;may&nbsp;be&nbsp;connected&nbsp;to,&nbsp;if&nbsp;they&nbsp;are&nbsp;indeed&nbsp;available.<br>
+To&nbsp;print&nbsp;status&nbsp;updates,&nbsp;call&nbsp;with&nbsp;verbose&nbsp;=&nbsp;True.&nbsp;<br>
+loadbaud,&nbsp;loadsps,&nbsp;and&nbsp;dynabaud&nbsp;are&nbsp;all&nbsp;options&nbsp;as&nbsp;well.<br>
+Simply&nbsp;calling&nbsp;<a href="#Freeloader-autoconnect">autoconnect</a>()&nbsp;will&nbsp;scan&nbsp;with&nbsp;most&nbsp;common&nbsp;settings&nbsp;as&nbsp;above.<br>
+Failure&nbsp;to&nbsp;connect&nbsp;in&nbsp;any&nbsp;case&nbsp;will&nbsp;raise&nbsp;a&nbsp;descriptive&nbsp;<a href="#FreeloaderError">FreeloaderError</a>.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-connect_dynamixel"><strong>connect_dynamixel</strong></a>(self, port, baudr)</dt><dd><tt>Method&nbsp;to&nbsp;connect&nbsp;to&nbsp;the&nbsp;Dynamixel&nbsp;motor.<br>
+port&nbsp;is&nbsp;a&nbsp;string&nbsp;of&nbsp;form&nbsp;"COM5"&nbsp;for&nbsp;Windows.&nbsp;<br>
+baudr&nbsp;is&nbsp;the&nbsp;baudrate&nbsp;provided&nbsp;as&nbsp;an&nbsp;int.<br>
+If&nbsp;a&nbsp;Dynamixel&nbsp;is&nbsp;found,&nbsp;connect_dynamixel&nbsp;will&nbsp;return&nbsp;normally<br>
+and&nbsp;the&nbsp;dyna_online&nbsp;attribute&nbsp;will&nbsp;be&nbsp;set&nbsp;to&nbsp;True.<br>
+If&nbsp;not,&nbsp;a&nbsp;descriptive&nbsp;<a href="#FreeloaderError">FreeloaderError</a>&nbsp;will&nbsp;be&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-connect_load"><strong>connect_load</strong></a>(self, port, baudr, sps<font color="#909090">=120</font>)</dt><dd><tt>Method&nbsp;to&nbsp;connect&nbsp;to&nbsp;the&nbsp;load&nbsp;cell&nbsp;interface.<br>
+port&nbsp;is&nbsp;a&nbsp;string&nbsp;of&nbsp;form&nbsp;"COM5"&nbsp;for&nbsp;Windows.&nbsp;<br>
+baudr&nbsp;is&nbsp;the&nbsp;baudrate&nbsp;provided&nbsp;as&nbsp;an&nbsp;int.<br>
+User&nbsp;can&nbsp;optionally&nbsp;set&nbsp;"sps"&nbsp;for&nbsp;lower,&nbsp;more&nbsp;accurate&nbsp;rate.<br>
+If&nbsp;a&nbsp;load&nbsp;cell&nbsp;is&nbsp;found,&nbsp;connect_load&nbsp;will&nbsp;return&nbsp;normally<br>
+and&nbsp;the&nbsp;cell_online&nbsp;attribute&nbsp;will&nbsp;be&nbsp;set&nbsp;to&nbsp;True.<br>
+If&nbsp;not,&nbsp;a&nbsp;descriptive&nbsp;<a href="#FreeloaderError">FreeloaderError</a>&nbsp;will&nbsp;be&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-disconnect"><strong>disconnect</strong></a>(self)</dt><dd><tt>Safely&nbsp;disconnects&nbsp;everything&nbsp;which&nbsp;is&nbsp;connected.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-get_linear_position"><strong>get_linear_position</strong></a>(self)</dt><dd><tt>A&nbsp;convenient&nbsp;but&nbsp;fragile&nbsp;function&nbsp;which&nbsp;returns&nbsp;the&nbsp;linear&nbsp;position<br>
+of&nbsp;the&nbsp;crosshead&nbsp;itself,&nbsp;calculated&nbsp;from&nbsp;screw&nbsp;pitch,&nbsp;gear,&nbsp;etc.<br>
+In&nbsp;order&nbsp;to&nbsp;be&nbsp;accurate,&nbsp;it&nbsp;must&nbsp;be&nbsp;continually&nbsp;called&nbsp;any&nbsp;time&nbsp;the&nbsp;<br>
+motor&nbsp;is&nbsp;in&nbsp;motion,&nbsp;at&nbsp;a&nbsp;rate&nbsp;greater&nbsp;than&nbsp;twice&nbsp;per&nbsp;revolution.<br>
+Calling&nbsp;it&nbsp;too&nbsp;infrequently&nbsp;will&nbsp;cause&nbsp;incorrect&nbsp;overflow&nbsp;compensation.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-get_raw_encoder"><strong>get_raw_encoder</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;raw&nbsp;encoder&nbsp;value&nbsp;from&nbsp;0&nbsp;to&nbsp;4096.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-read_cell"><strong>read_cell</strong></a>(self)</dt><dd><tt>Read&nbsp;a&nbsp;load&nbsp;cell&nbsp;response&nbsp;and&nbsp;returns&nbsp;as&nbsp;a&nbsp;float&nbsp;in&nbsp;lbs.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-read_raw_cell"><strong>read_raw_cell</strong></a>(self)</dt><dd><tt>Reads&nbsp;a&nbsp;load&nbsp;cell&nbsp;response&nbsp;in&nbsp;raw&nbsp;form&nbsp;(string&nbsp;with&nbsp;return&nbsp;and&nbsp;newline)</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-reset_linear_position"><strong>reset_linear_position</strong></a>(self)</dt><dd><tt>Resets&nbsp;the&nbsp;linear&nbsp;position&nbsp;tracker&nbsp;to&nbsp;zero.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-start_motor"><strong>start_motor</strong></a>(self, speed, down<font color="#909090">=False</font>)</dt><dd><tt>Moves&nbsp;the&nbsp;motor&nbsp;up&nbsp;or&nbsp;down&nbsp;with&nbsp;a&nbsp;speed&nbsp;in&nbsp;mm/min.<br>
+Ex:&nbsp;<a href="#Freeloader-start_motor">start_motor</a>(60,&nbsp;down&nbsp;=&nbsp;True)&nbsp;moves&nbsp;down&nbsp;at&nbsp;60&nbsp;mm/min.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-stop_motor"><strong>stop_motor</strong></a>(self)</dt><dd><tt>Stops&nbsp;the&nbsp;motor.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-tare_cell"><strong>tare_cell</strong></a>(self)</dt><dd><tt>Send&nbsp;the&nbsp;TARE&nbsp;command&nbsp;to&nbsp;the&nbsp;load&nbsp;cell.</tt></dd></dl>
+
+<dl><dt><a name="Freeloader-wait_for_cell"><strong>wait_for_cell</strong></a>(self, len, timeout)</dt><dd><tt>Method&nbsp;which&nbsp;waits&nbsp;until&nbsp;load&nbsp;cell&nbsp;returns&nbsp;message&nbsp;of&nbsp;len&nbsp;bytes.<br>
+If&nbsp;it&nbsp;waits&nbsp;for&nbsp;longer&nbsp;than&nbsp;timeout,&nbsp;a&nbsp;<a href="#FreeloaderError">FreeloaderError</a>&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FreeloaderError">class <strong>FreeloaderError</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;is&nbsp;an&nbsp;exception&nbsp;for&nbsp;errors&nbsp;explicitly&nbsp;related&nbsp;to&nbsp;a&nbsp;<a href="#Freeloader">Freeloader</a>.<br>
+There&nbsp;is&nbsp;nothing&nbsp;special&nbsp;about&nbsp;it.&nbsp;It&nbsp;is&nbsp;instantiated&nbsp;with&nbsp;a&nbsp;single<br>
+argument,&nbsp;a&nbsp;message&nbsp;string,&nbsp;which&nbsp;can&nbsp;be&nbsp;accessed&nbsp;by&nbsp;<a href="#FreeloaderError">FreeloaderError</a>.msg.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="freeloader.html#FreeloaderError">FreeloaderError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FreeloaderError-__init__"><strong>__init__</strong></a>(self, msg)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;<dd><tt>T.<a href="#FreeloaderError-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="FreeloaderError-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeloaderError-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FreeloaderError-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#FreeloaderError-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="FreeloaderError-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

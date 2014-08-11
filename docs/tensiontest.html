@@ -1,0 +1,151 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module tensiontest</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>tensiontest</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/empire%20robotics/documents/github/pyloader/tensiontest.py">c:\users\empire robotics\documents\github\pyloader\tensiontest.py</a></font></td></tr></table>
+    <p><tt>tensiontest.py<br>
+&nbsp;<br>
+Written&nbsp;by&nbsp;Anthony&nbsp;McNicoll&nbsp;&lt;am859@cornell.edu&gt;<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;executes&nbsp;a&nbsp;simple&nbsp;tension&nbsp;test&nbsp;using&nbsp;the&nbsp;<a href="basictest.html#BasicTest">BasicTest</a>&nbsp;class.<br>
+&nbsp;<br>
+It&nbsp;illustrates&nbsp;that&nbsp;a&nbsp;short,&nbsp;procedural&nbsp;test&nbsp;can&nbsp;be&nbsp;written&nbsp;painlessly<br>
+simply&nbsp;by&nbsp;overriding&nbsp;the&nbsp;run_test()&nbsp;method,&nbsp;and&nbsp;illustrates&nbsp;how&nbsp;to&nbsp;do&nbsp;so.<br>
+&nbsp;<br>
+Note&nbsp;the&nbsp;import&nbsp;statement:<br>
+&nbsp;<br>
+from&nbsp;basictest&nbsp;import&nbsp;<a href="basictest.html#BasicTest">BasicTest</a>,&nbsp;Freeloader,&nbsp;FreeloaderError<br>
+&nbsp;<br>
+You&nbsp;need&nbsp;Freeloader&nbsp;to&nbsp;create&nbsp;a&nbsp;machine&nbsp;and&nbsp;connect&nbsp;to&nbsp;it.<br>
+You&nbsp;need&nbsp;FreeloaderError&nbsp;to&nbsp;catch&nbsp;any&nbsp;errors&nbsp;while&nbsp;connecting.<br>
+And&nbsp;you&nbsp;need&nbsp;<a href="basictest.html#BasicTest">BasicTest</a>,&nbsp;which&nbsp;is&nbsp;the&nbsp;class&nbsp;you&nbsp;are&nbsp;extending.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="traceback.html">traceback</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="basictest.html#BasicTest">basictest.BasicTest</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="tensiontest.html#TensionTest">TensionTest</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TensionTest">class <strong>TensionTest</strong></a>(<a href="basictest.html#BasicTest">basictest.BasicTest</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Write&nbsp;a&nbsp;new&nbsp;class&nbsp;with&nbsp;any&nbsp;name&nbsp;you&nbsp;want&nbsp;(here,&nbsp;<a href="#TensionTest">TensionTest</a>).<br>
+It&nbsp;must&nbsp;inherit&nbsp;from&nbsp;<a href="basictest.html#BasicTest">BasicTest</a>,&nbsp;which&nbsp;is&nbsp;done&nbsp;by&nbsp;putting&nbsp;<a href="basictest.html#BasicTest">BasicTest</a>&nbsp;in&nbsp;parenthesis.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="TensionTest-run_test"><strong>run_test</strong></a>(self)</dt><dd><tt>To&nbsp;override&nbsp;<a href="#TensionTest-run_test">run_test</a>(),&nbsp;simply&nbsp;write&nbsp;it&nbsp;as&nbsp;if&nbsp;it&nbsp;had&nbsp;never&nbsp;been<br>
+defined&nbsp;before.&nbsp;Use&nbsp;commands&nbsp;from&nbsp;<a href="basictest.html#BasicTest">BasicTest</a>.&nbsp;This&nbsp;does&nbsp;the&nbsp;following:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Ask&nbsp;user&nbsp;for&nbsp;speed&nbsp;and&nbsp;break&nbsp;detection&nbsp;force<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Initialize&nbsp;data&nbsp;collection<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Move&nbsp;up&nbsp;and&nbsp;collect&nbsp;until&nbsp;force&nbsp;is&nbsp;greater&nbsp;than&nbsp;break<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Keep&nbsp;moving&nbsp;up&nbsp;and&nbsp;collect&nbsp;until&nbsp;force&nbsp;is&nbsp;less&nbsp;than&nbsp;break<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Stop&nbsp;motor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Wait&nbsp;for&nbsp;user&nbsp;to&nbsp;remove&nbsp;test&nbsp;piece&nbsp;(keyboard&nbsp;input)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Move&nbsp;back&nbsp;down&nbsp;until&nbsp;position&nbsp;is&nbsp;less&nbsp;than&nbsp;original.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Write&nbsp;data&nbsp;to&nbsp;file&nbsp;with&nbsp;header.<br>
+&nbsp;<br>
+As&nbsp;you&nbsp;can&nbsp;see,&nbsp;there&nbsp;is&nbsp;no&nbsp;problem&nbsp;with&nbsp;using&nbsp;outside&nbsp;Python&nbsp;functions<br>
+such&nbsp;as&nbsp;raw_input&nbsp;and&nbsp;print&nbsp;to&nbsp;communicate&nbsp;with&nbsp;the&nbsp;user&nbsp;at&nbsp;different<br>
+points&nbsp;in&nbsp;the&nbsp;test.<br>
+&nbsp;<br>
+The&nbsp;most&nbsp;important&nbsp;thing&nbsp;to&nbsp;remember&nbsp;is&nbsp;that&nbsp;data&nbsp;is&nbsp;only&nbsp;collected&nbsp;during<br>
+the&nbsp;collect_until&nbsp;and&nbsp;collect_until_keyboard&nbsp;methods,&nbsp;so&nbsp;one&nbsp;of&nbsp;these<br>
+two&nbsp;should&nbsp;always&nbsp;be&nbsp;running&nbsp;if&nbsp;you&nbsp;want&nbsp;to&nbsp;be&nbsp;recording.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="basictest.html#BasicTest">basictest.BasicTest</a>:<br>
+<dl><dt><a name="TensionTest-__init__"><strong>__init__</strong></a>(self, machine)</dt><dd><tt><a href="basictest.html#BasicTest">BasicTest</a>&nbsp;must&nbsp;be&nbsp;instantiated&nbsp;with&nbsp;a&nbsp;machine&nbsp;which&nbsp;is&nbsp;already&nbsp;connected.<br>
+machine&nbsp;must&nbsp;be&nbsp;an&nbsp;instance&nbsp;of&nbsp;Freeloader&nbsp;or&nbsp;a&nbsp;class&nbsp;inheriting&nbsp;from&nbsp;Freeloader.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-collect_data"><strong>collect_data</strong></a>(self)</dt><dd><tt>Collects&nbsp;time,&nbsp;position,&nbsp;and&nbsp;load&nbsp;from&nbsp;the&nbsp;Freeloader.<br>
+If&nbsp;you&nbsp;would&nbsp;like&nbsp;to&nbsp;collect&nbsp;additional&nbsp;data,&nbsp;you&nbsp;must&nbsp;override<br>
+this&nbsp;method&nbsp;and&nbsp;add&nbsp;to&nbsp;the&nbsp;returned&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-collect_for"><strong>collect_for</strong></a>(self, sec, rate<font color="#909090">=1000000</font>)</dt><dd><tt>More&nbsp;convenient&nbsp;way&nbsp;of&nbsp;calling&nbsp;collect_until&nbsp;with&nbsp;time.<br>
+The&nbsp;caveat&nbsp;is&nbsp;that&nbsp;the&nbsp;this&nbsp;function&nbsp;is&nbsp;only&nbsp;as&nbsp;accurate&nbsp;as<br>
+the&nbsp;speed&nbsp;of&nbsp;the&nbsp;equipment.&nbsp;If&nbsp;it&nbsp;takes&nbsp;30&nbsp;ms&nbsp;collect&nbsp;a&nbsp;datapoint,<br>
+and&nbsp;sec&nbsp;is&nbsp;120&nbsp;ms,&nbsp;collection&nbsp;may&nbsp;occur&nbsp;for&nbsp;up&nbsp;to&nbsp;150&nbsp;ms.&nbsp;Keep&nbsp;this<br>
+in&nbsp;mind.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-collect_until"><strong>collect_until</strong></a>(self, value, fun, threshold, rate<font color="#909090">=1000000</font>, verbose<font color="#909090">=True</font>)</dt><dd><tt>Important,&nbsp;magical&nbsp;function.<br>
+Automatically&nbsp;constructs&nbsp;loop&nbsp;to&nbsp;collect&nbsp;data&nbsp;until&nbsp;either:<br>
+value&nbsp;is&nbsp;"lessthan"&nbsp;or&nbsp;"greaterthan"&nbsp;threshold<br>
+Keyboard&nbsp;is&nbsp;hit&nbsp;(ends&nbsp;test&nbsp;completely)<br>
+For&nbsp;example,&nbsp;<a href="#TensionTest-collect_until">collect_until</a>("load","greaterthan",10)&nbsp;will&nbsp;(predictably)<br>
+continously&nbsp;collect&nbsp;data&nbsp;using&nbsp;the&nbsp;<a href="#TensionTest-collect_data">collect_data</a>()&nbsp;method&nbsp;until&nbsp;load<br>
+exceeds&nbsp;10&nbsp;lbs.&nbsp;<br>
+The&nbsp;rate&nbsp;option&nbsp;specifies&nbsp;sampling&nbsp;rate&nbsp;in&nbsp;Hz.&nbsp;With&nbsp;a&nbsp;9600&nbsp;baud&nbsp;Loadstar,&nbsp;this<br>
+cannot&nbsp;exceed&nbsp;30&nbsp;Hz.&nbsp;The&nbsp;default,&nbsp;1Mhz,&nbsp;simply&nbsp;means&nbsp;"as&nbsp;fast&nbsp;as&nbsp;possible."<br>
+The&nbsp;verbose&nbsp;option&nbsp;prints&nbsp;the&nbsp;watched&nbsp;value&nbsp;and&nbsp;the&nbsp;threshold,&nbsp;so&nbsp;that&nbsp;the<br>
+user&nbsp;can&nbsp;monitor&nbsp;progress&nbsp;themselves.&nbsp;This&nbsp;is&nbsp;left&nbsp;on&nbsp;by&nbsp;default&nbsp;as&nbsp;a&nbsp;safety<br>
+feature,&nbsp;but&nbsp;can&nbsp;be&nbsp;muted&nbsp;by&nbsp;setting&nbsp;verbose&nbsp;=&nbsp;False.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-collect_until_keyboard"><strong>collect_until_keyboard</strong></a>(self, rate<font color="#909090">=1000000</font>)</dt><dd><tt>Collects&nbsp;data&nbsp;until&nbsp;user&nbsp;hits&nbsp;any&nbsp;key&nbsp;on&nbsp;the&nbsp;keyboard.<br>
+The&nbsp;rate&nbsp;option&nbsp;specifies&nbsp;sampling&nbsp;rate&nbsp;in&nbsp;Hz.&nbsp;With&nbsp;a&nbsp;9600&nbsp;baud&nbsp;Loadstar,&nbsp;<br>
+this&nbsp;cannot&nbsp;exceed&nbsp;30&nbsp;Hz.&nbsp;The&nbsp;default,&nbsp;1Mhz,&nbsp;simply&nbsp;means&nbsp;"as&nbsp;fast&nbsp;as&nbsp;possible."</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-exit_error"><strong>exit_error</strong></a>(self, error)</dt><dd><tt>Prompts&nbsp;before&nbsp;exiting,&nbsp;so&nbsp;user&nbsp;has&nbsp;time&nbsp;to&nbsp;read&nbsp;error.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-get_all_values"><strong>get_all_values</strong></a>(self, value)</dt><dd><tt>Returns&nbsp;one&nbsp;column&nbsp;with&nbsp;label&nbsp;'value'</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-get_first_point"><strong>get_first_point</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;first&nbsp;collected&nbsp;datapoint.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-get_first_value"><strong>get_first_value</strong></a>(self, value)</dt><dd><tt>Returns&nbsp;the&nbsp;first&nbsp;collected&nbsp;value&nbsp;of&nbsp;name&nbsp;"value".<br>
+For&nbsp;example,&nbsp;<a href="#TensionTest-get_last_value">get_last_value</a>("load")&nbsp;returns&nbsp;the&nbsp;initial&nbsp;load.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-get_last_point"><strong>get_last_point</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;most&nbsp;recently&nbsp;collected&nbsp;datapoint&nbsp;as&nbsp;a&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-get_last_value"><strong>get_last_value</strong></a>(self, value)</dt><dd><tt>Returns&nbsp;the&nbsp;most&nbsp;recently&nbsp;collected&nbsp;value&nbsp;of&nbsp;name&nbsp;"value".<br>
+For&nbsp;example,&nbsp;<a href="#TensionTest-get_last_value">get_last_value</a>("load")&nbsp;returns&nbsp;the&nbsp;last&nbsp;collected&nbsp;load.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-initialize_data"><strong>initialize_data</strong></a>(self)</dt><dd><tt>Clears&nbsp;any&nbsp;stored&nbsp;data&nbsp;and&nbsp;sets&nbsp;reference&nbsp;time&nbsp;to&nbsp;0.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-set_columns"><strong>set_columns</strong></a>(self, label_list)</dt><dd><tt>If&nbsp;you&nbsp;would&nbsp;like&nbsp;to&nbsp;collect&nbsp;more&nbsp;than&nbsp;time,&nbsp;position,&nbsp;and&nbsp;load,&nbsp;you&nbsp;must<br>
+specify&nbsp;the&nbsp;column&nbsp;labels&nbsp;for&nbsp;passing&nbsp;into&nbsp;get_last_value&nbsp;and&nbsp;get_first_value&nbsp;by<br>
+calling&nbsp;this&nbsp;function&nbsp;with&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;in&nbsp;label_list.,&nbsp;in&nbsp;order&nbsp;of&nbsp;columns.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-wait_for"><strong>wait_for</strong></a>(self, sec)</dt><dd><tt>Convenient&nbsp;version&nbsp;of&nbsp;wait_until&nbsp;for&nbsp;time&nbsp;only.<br>
+It&nbsp;keeps&nbsp;track&nbsp;of&nbsp;time&nbsp;more&nbsp;accurately.<br>
+Will&nbsp;keep&nbsp;position&nbsp;updated&nbsp;if&nbsp;motor&nbsp;is&nbsp;moving.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-wait_for_keyboard"><strong>wait_for_keyboard</strong></a>(self)</dt><dd><tt>Machine&nbsp;continues&nbsp;to&nbsp;do&nbsp;whatever&nbsp;it&nbsp;was&nbsp;doing&nbsp;until&nbsp;user&nbsp;hits&nbsp;keyboard.<br>
+Data&nbsp;is&nbsp;collected&nbsp;but&nbsp;discarded&nbsp;to&nbsp;keep&nbsp;position&nbsp;accurate.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-wait_until"><strong>wait_until</strong></a>(self, value, fun, threshold, verbose<font color="#909090">=True</font>)</dt><dd><tt>See&nbsp;collect_until.&nbsp;Same&nbsp;operation,&nbsp;but&nbsp;no&nbsp;data&nbsp;is&nbsp;collected.<br>
+It&nbsp;does&nbsp;still&nbsp;ask&nbsp;for&nbsp;data&nbsp;in&nbsp;order&nbsp;to&nbsp;check&nbsp;the&nbsp;end&nbsp;condition,&nbsp;but<br>
+does&nbsp;not&nbsp;store&nbsp;it.&nbsp;This&nbsp;means&nbsp;position&nbsp;will&nbsp;remain&nbsp;accurate&nbsp;during&nbsp;wait.</tt></dd></dl>
+
+<dl><dt><a name="TensionTest-write_file"><strong>write_file</strong></a>(self, h)</dt><dd><tt>Writes&nbsp;the&nbsp;collected&nbsp;data&nbsp;to&nbsp;a&nbsp;file.<br>
+The&nbsp;user&nbsp;can&nbsp;specify&nbsp;a&nbsp;text&nbsp;header,&nbsp;h,&nbsp;which&nbsp;will&nbsp;be&nbsp;written&nbsp;to&nbsp;the&nbsp;top.<br>
+A&nbsp;graphical&nbsp;"Save&nbsp;As"&nbsp;dialogue&nbsp;appears&nbsp;to&nbsp;ask&nbsp;the&nbsp;user&nbsp;where&nbsp;to&nbsp;save&nbsp;the&nbsp;file.</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
